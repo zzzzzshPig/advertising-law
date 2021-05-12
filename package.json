@@ -1,0 +1,19 @@
+{
+  "name": "advertising-law",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zzzzzshPig/advertisingLaw.git",
+  "author": "zhoushaohui <1012352205@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "baidu-aip-sdk": "^4.15.4"
+  }
+}
