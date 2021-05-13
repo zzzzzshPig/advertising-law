@@ -13,10 +13,10 @@ function advertisingLaw ({ bd, jy }) {
     // <span style="background-color:#f95647;">地铁上盖</span><span style="background-color:#f95647;">地铁上盖</span>
     async function jyAdTextFilter (text) {
         const res = await $.post('http://www.ju1.cn/Index/add', qs.stringify({
-            mgtype: 0,
-            ty_wj_type: 1,
-            mz_wj_type: 0,
-            xw_wj_type: 0,
+            mgtype: jy.mgtype,
+            ty_wj_type: jy.ty_wj_type,
+            mz_wj_type: jy.mz_wj_type,
+            xw_wj_type: jy.xw_wj_type,
             text
         }), {
             headers: {
