@@ -1,8 +1,9 @@
 const $ = require('axios')
 const qs = require('querystring')
 const AipContentCensorClient = require('baidu-aip-sdk').contentCensor
+const AipOcrClient = require('baidu-aip-sdk').ocr
 
-function advertisingLaw ({ bd, jy }) {
+function filterText ({ bd, jy }) {
     const client = new AipContentCensorClient(bd.appId, bd.apiKey, bd.secretKey)
     // 百度广告法检测接口 接口返回值看 https://ai.baidu.com/ai-doc/ANTIPORN/Ck3h6xef3#%E5%86%85%E5%AE%B9%E5%AE%A1%E6%A0%B8%E5%B9%B3%E5%8F%B0-%E6%96%87%E6%9C%AC
     async function bdAdTextFilter (text) {
@@ -69,4 +70,24 @@ function advertisingLaw ({ bd, jy }) {
     }
 }
 
-module.exports = advertisingLaw
+function filterImage ({ bd }) {
+    const client = new AipOcrClient(bd.appId, bd.apiKey, bd.secretKey)
+
+    async function getWjWordByBd (image) {
+        const res = await client.generalBasicUrl(image) // 获取图片上的文字
+        const data = res.words_result
+
+        if (!data) return []
+
+        return data.map(a => a.words).join('')
+    }
+
+    return {
+        getWjWordByBd
+    }
+}
+
+module.exports = {
+    filterText,
+    filterImage
+}
